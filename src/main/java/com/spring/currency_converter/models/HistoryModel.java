@@ -26,11 +26,11 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
     private String from_currency_symbol;
     private Long from_currency_value;
     private String to_currency_symbol;
-    private String to_currency_value;
+    private Long to_currency_value;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
-    private UserModel user;
+    public UserModel user;
 
     public String getFrom_currenc_symbol() {
         return from_currency_symbol;
@@ -64,11 +64,11 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
         this.to_currency_symbol = to_currency_symbol;
     }
 
-    public String getTo_currency_value() {
+    public Long getTo_currency_value() {
         return to_currency_value;
     }
 
-    public void setTo_currency_value(String to_currency_value) {
+    public void setTo_currency_value(Long to_currency_value) {
         this.to_currency_value = to_currency_value;
     }
 

@@ -28,7 +28,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<HistoryModel> historyModel;
+    public List<HistoryModel> historyModel;
 
     public UUID getId() {
         return id;
