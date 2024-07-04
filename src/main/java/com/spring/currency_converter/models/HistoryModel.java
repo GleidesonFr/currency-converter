@@ -24,9 +24,9 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_operation;
     private String from_currency_symbol;
-    private Long from_currency_value;
+    private double from_currency_value;
     private String to_currency_symbol;
-    private Long to_currency_value;
+    private double to_currency_value;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
@@ -40,11 +40,11 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
         this.from_currency_symbol = from_currency_symbol;
     }
 
-    public Long getFrom_currency_value() {
+    public double getFrom_currency_value() {
         return from_currency_value;
     }
 
-    public void setFrom_currency_value(Long from_currency_value) {
+    public void setFrom_currency_value(double from_currency_value) {
         this.from_currency_value = from_currency_value;
     }
 
@@ -64,11 +64,11 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
         this.to_currency_symbol = to_currency_symbol;
     }
 
-    public Long getTo_currency_value() {
+    public double getTo_currency_value() {
         return to_currency_value;
     }
 
-    public void setTo_currency_value(Long to_currency_value) {
+    public void setTo_currency_value(double to_currency_value) {
         this.to_currency_value = to_currency_value;
     }
 
