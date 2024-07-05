@@ -3,6 +3,6 @@ package com.spring.currency_converter.exceptions;
 public class ArgumentNotValidException extends RuntimeException{
     
     public ArgumentNotValidException(){
-        super("nome de usuário e/ou senha são inválidos.");
+        super("Os dados inseridos são inválidos.");
     }
 }

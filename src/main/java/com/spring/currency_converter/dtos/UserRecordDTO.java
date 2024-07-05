@@ -1,8 +1,9 @@
 package com.spring.currency_converter.dtos;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
-public record UserRecordDTO(@NotBlank String name, @Size(min = 8) String password) {
+public record UserRecordDTO(@NotEmpty String name,@NotEmpty String email, @NotNull @Min(value = 8) String password) {
     
 }

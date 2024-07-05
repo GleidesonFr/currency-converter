@@ -1,8 +1,8 @@
 package com.spring.currency_converter.exceptions;
 
-public class UsernameIsBlankException extends RuntimeException{
+public class UsernameNotValidException extends RuntimeException{
     
-    public UsernameIsBlankException(){
+    public UsernameNotValidException(){
         super("O nome de usuário está em branco.");
     }
 }
