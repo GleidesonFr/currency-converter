@@ -12,6 +12,6 @@ public interface UserService {
     public void createUser(UserRecordDTO userRecordDTO);
     public void updateUser(UUID id, UserRecordDTO userRecordDTO);
     public void deleteUser(UUID id);
-    public UserModel getUser(UUID id);
+    public UserModel getUser(String username, String password);
     public List<HistoryModel> getHistories(UUID id);
 }

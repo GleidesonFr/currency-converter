@@ -34,8 +34,9 @@ public class UserServiceImpl implements UserService{
         userValidation(userRecordDTO);
         Optional<UserModel> user = userRepository.findByName(userRecordDTO.name());
         if(user.isEmpty()){
-            BeanUtils.copyProperties(userRecordDTO, user);
-            userRepository.save(user.get());
+            UserModel userModel = new UserModel();
+            BeanUtils.copyProperties(userRecordDTO, userModel);
+            userRepository.save(userModel);
         }else{
             throw new UserAlreadyExistsException();
         }
@@ -55,9 +56,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserModel getUser(UUID id) {
-        UserModel userModel = this.userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-        return userModel;
+    public UserModel getUser(String username, String password) {
+        UserModel userModel = this.userRepository.findByName(username).orElseThrow(UserNotFoundException::new);
+        if(userModel.getPassword().equals(password)){
+            return userModel;
+        }else{
+            throw new UserNotFoundException();
+        }
     }
 
     @Override
@@ -79,5 +84,4 @@ public class UserServiceImpl implements UserService{
             }
         }
     }
-    
 }

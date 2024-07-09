@@ -1,9 +1,10 @@
 package com.spring.currency_converter.services;
 
 import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spring.currency_converter.dtos.HistoryRecordDTO;
@@ -19,7 +20,7 @@ public class HistoryServiceImpl implements HistoryService{
 
     @Override
     public void deleteHistories() {
-        
+        historyRepository.deleteAll();
     }
 
     @Override
@@ -30,8 +31,8 @@ public class HistoryServiceImpl implements HistoryService{
 
     @Override
     public Collection<HistoryModel> getHistories() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHistories'");
+        List<HistoryModel> histories = historyRepository.findAll();
+        return histories;
     }
 
     @Override
@@ -42,8 +43,9 @@ public class HistoryServiceImpl implements HistoryService{
 
     @Override
     public void createHistory(HistoryRecordDTO historyModelDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createHistory'");
+        HistoryModel historyModel = new HistoryModel();
+        BeanUtils.copyProperties(historyModelDTO, historyModel);
+        historyRepository.save(historyModel);
     }
     
 }

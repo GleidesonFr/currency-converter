@@ -1,6 +1,7 @@
 package com.spring.currency_converter.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 @Table(name = HistoryModel.TABLE)
 public class HistoryModel extends RepresentationModel<HistoryModel> implements Serializable{
 
-    private static final String TABLE = "tb_history";
+    public static final String TABLE = "tb_history";
     private static final Long serialVersionUID = 1L;
 
     @Id
