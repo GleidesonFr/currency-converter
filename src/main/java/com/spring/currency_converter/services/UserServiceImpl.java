@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteUser(UUID id) {
-        UserModel user = getUser(id);
+    public void deleteUser(String username, String password) {
+        UserModel user = getUser(username, password);
         userRepository.delete(user);
     }
 
@@ -83,5 +83,11 @@ public class UserServiceImpl implements UserService{
                 throw new EmailAlreadyExistsException();
             }
         }
+    }
+
+    @Override
+    public UserModel getUser(UUID id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
     }
 }
