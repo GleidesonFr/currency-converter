@@ -1,7 +1,6 @@
 package com.spring.currency_converter.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;

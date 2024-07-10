@@ -6,8 +6,9 @@ import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +26,13 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @JsonProperty("username")
     private String name;
+
     private String email;
+    
+    @JsonProperty("password")
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

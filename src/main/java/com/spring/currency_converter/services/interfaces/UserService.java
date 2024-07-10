@@ -10,7 +10,7 @@ import com.spring.currency_converter.models.UserModel;
 public interface UserService {
     
     public void createUser(UserRecordDTO userRecordDTO);
-    public void updateUser(UUID id, UserRecordDTO userRecordDTO);
+    public UserModel updateUser(UserRecordDTO userRecordDTO);
     public void deleteUser(String username, String password);
     public UserModel getUser(String username, String password);
     public UserModel getUser(UUID id);

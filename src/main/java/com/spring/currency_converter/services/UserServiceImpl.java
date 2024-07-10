@@ -43,10 +43,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateUser(UUID id, UserRecordDTO userRecordDTO) {
-        UserModel user = getUser(id);
+    public UserModel updateUser(UserRecordDTO userRecordDTO) {
+        UserModel user = getUser(userRecordDTO.name(), userRecordDTO.password());
         BeanUtils.copyProperties(userRecordDTO, user);
         userRepository.save(user);
+        return user;
     }
 
     @Override
@@ -63,6 +64,12 @@ public class UserServiceImpl implements UserService{
         }else{
             throw new UserNotFoundException();
         }
+    }
+
+    @Override
+    public UserModel getUser(UUID id) {
+        UserModel userModel = this.userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        return userModel;
     }
 
     @Override
@@ -83,11 +90,5 @@ public class UserServiceImpl implements UserService{
                 throw new EmailAlreadyExistsException();
             }
         }
-    }
-
-    @Override
-    public UserModel getUser(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
     }
 }
