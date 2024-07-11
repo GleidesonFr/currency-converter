@@ -43,8 +43,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserModel updateUser(UserRecordDTO userRecordDTO) {
-        UserModel user = getUser(userRecordDTO.name(), userRecordDTO.password());
+    public UserModel updateUser(UUID id, UserRecordDTO userRecordDTO) {
+        UserModel user = getUser(id);
         BeanUtils.copyProperties(userRecordDTO, user);
         userRepository.save(user);
         return user;

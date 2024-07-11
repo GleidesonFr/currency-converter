@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.spring.currency_converter.exceptions.APIError;
 import com.spring.currency_converter.exceptions.EmailAlreadyExistsException;
 import com.spring.currency_converter.exceptions.EmailNotValidException;
+import com.spring.currency_converter.exceptions.HistoryNotFoundException;
 import com.spring.currency_converter.exceptions.UserAlreadyExistsException;
 import com.spring.currency_converter.exceptions.UserNotFoundException;
 
@@ -25,7 +26,10 @@ public class RestExceptionHandlerController {
         return new ResponseEntity<>(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler({
+        UserNotFoundException.class,
+        HistoryNotFoundException.class
+    })
     public ResponseEntity<APIError> notFoundException(RuntimeException runtimeException){
         APIError apiError = APIError.builder().timestamp(LocalDateTime.now()).code(HttpStatus.NOT_FOUND.value()).status(HttpStatus.NOT_FOUND.name()).errors(List.of(runtimeException.getMessage())).build();
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);

@@ -1,6 +1,7 @@
 package com.spring.currency_converter.models;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -23,6 +24,7 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_operation;
+    private LocalDateTime time;
     private String from_currency_symbol;
     private double from_currency_value;
     private String to_currency_symbol;
@@ -78,6 +80,14 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
 
     public void setUser(UserModel user) {
         this.user = user;
+    }
+
+    public void setTime(LocalDateTime time){
+        this.time = time;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
     }
 }
     
