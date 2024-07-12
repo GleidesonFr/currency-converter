@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
@@ -36,6 +37,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     public List<HistoryModel> historyModel;
 
     public UUID getId() {

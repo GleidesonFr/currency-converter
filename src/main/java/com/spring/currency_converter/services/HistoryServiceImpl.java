@@ -11,15 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.spring.currency_converter.dtos.HistoryRecordDTO;
 import com.spring.currency_converter.exceptions.HistoryNotFoundException;
 import com.spring.currency_converter.models.HistoryModel;
 import com.spring.currency_converter.models.UserModel;
 import com.spring.currency_converter.repositories.HistoryRepository;
-import com.spring.currency_converter.repositories.UserRepository;
 import com.spring.currency_converter.services.interfaces.HistoryService;
 
+@Service
 public class HistoryServiceImpl implements HistoryService{
 
     @Autowired
@@ -61,8 +62,10 @@ public class HistoryServiceImpl implements HistoryService{
     }
 
     @Override
-    public HistoryModel createHistory(HistoryRecordDTO historyModelDTO) {
+    public HistoryModel createHistory(UUID id, HistoryRecordDTO historyModelDTO) {
         HistoryModel historyModel = new HistoryModel();
+        historyModel.setUser(userServiceImpl.getUser(id));
+        historyModel.setTime(LocalDateTime.now());
         BeanUtils.copyProperties(historyModelDTO, historyModel);
         historyRepository.save(historyModel);
         return historyModel;

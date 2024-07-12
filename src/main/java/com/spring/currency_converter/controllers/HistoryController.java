@@ -3,8 +3,13 @@ package com.spring.currency_converter.controllers;
 import java.util.List;
 import java.util.UUID;
 
+import javax.money.MonetaryAmount;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.currency_converter.dtos.HistoryRecordDTO;
 import com.spring.currency_converter.models.HistoryModel;
 import com.spring.currency_converter.services.HistoryServiceImpl;
+import com.spring.currency_converter.services.MonetaryServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -26,19 +32,27 @@ import jakarta.validation.Valid;
 public class HistoryController {
     
     @Autowired
+    PagedResourcesAssembler<HistoryModel> assembler;
+
+    @Autowired
+    MonetaryServiceImpl monetaryServiceImpl;
+
+    @Autowired
     private HistoryServiceImpl historyServiceImpl;
 
     @GetMapping("/{id}/in/currency-converter")
-    public ResponseEntity<Page<HistoryModel>> getAllHistories(@PathVariable("id") UUID id, @RequestParam(value = "page", defaultValue = "0") Integer page, 
+    public ResponseEntity<PagedModel<EntityModel<HistoryModel>>> getAllHistories(@PathVariable("id") UUID id, @RequestParam(value = "page", defaultValue = "0") Integer page, 
     @RequestParam(value = "size", defaultValue = "5") Integer size, @RequestParam(value = "orderBy", defaultValue = "time") String orderBy, @RequestParam(
-    value = "direction", defaultValue = "ASC") String direction){
+    value = "direction", defaultValue = "DESC") String direction){
         Page<HistoryModel> historyModels = historyServiceImpl.getHistories(page, size, orderBy, direction);
-        return ResponseEntity.status(HttpStatus.OK).body(historyModels);
+
+        return ResponseEntity.ok(assembler.toModel(historyModels));
     }
 
     @PostMapping("/{id}/in/currency-converter")
+    
     public ResponseEntity<HistoryModel> createHistory(@PathVariable("id") UUID id, @RequestBody @Valid HistoryRecordDTO historyRecordDTO){
-        HistoryModel historyModel = historyServiceImpl.createHistory(historyRecordDTO);
+        HistoryModel historyModel = historyServiceImpl.createHistory(id, historyRecordDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(historyModel);
     }
 

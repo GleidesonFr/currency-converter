@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +34,7 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
 
     @ManyToOne
     @JoinColumn(name = "id_user")
+    @JsonBackReference
     public UserModel user;
 
     public String getFrom_currenc_symbol() {
