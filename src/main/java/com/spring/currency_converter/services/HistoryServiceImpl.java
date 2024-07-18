@@ -1,8 +1,7 @@
 package com.spring.currency_converter.services;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,6 +27,9 @@ public class HistoryServiceImpl implements HistoryService{
 
     @Autowired
     private UserServiceImpl userServiceImpl;
+
+    @Autowired
+    private MonetaryServiceImpl monetaryServiceImpl;
 
     @Override
     public void deleteHistories() {
@@ -62,11 +64,12 @@ public class HistoryServiceImpl implements HistoryService{
     }
 
     @Override
-    public HistoryModel createHistory(UUID id, HistoryRecordDTO historyModelDTO) {
+    public HistoryModel createHistory(UUID id, HistoryRecordDTO historyRecordDTO) throws IOException {
         HistoryModel historyModel = new HistoryModel();
         historyModel.setUser(userServiceImpl.getUser(id));
         historyModel.setTime(LocalDateTime.now());
-        BeanUtils.copyProperties(historyModelDTO, historyModel);
+        historyModel.setTo_currency_value(monetaryServiceImpl.convertMoney(historyRecordDTO.from_currency_symbol(), historyRecordDTO.from_currency_value(), historyRecordDTO.to_currency_symbol()));
+        BeanUtils.copyProperties(historyRecordDTO, historyModel);
         historyRepository.save(historyModel);
         return historyModel;
     }

@@ -24,13 +24,14 @@ public class HistoryModel extends RepresentationModel<HistoryModel> implements S
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) 
     private UUID id_operation;
     private LocalDateTime time;
     private String from_currency_symbol;
     private double from_currency_value;
     private String to_currency_symbol;
     private double to_currency_value;
+
 
     @ManyToOne
     @JoinColumn(name = "id_user")
