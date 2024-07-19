@@ -34,8 +34,8 @@ public class MonetaryServiceImpl implements MonetaryService{
         Response response = client.newCall(request).execute();
         String stringResponse = response.body().string();
         JSONObject jsonObject = new JSONObject(stringResponse);
-        JSONObject conversionRatesObject = jsonObject.getJSONObject("conversion_rates");
-        double result = conversionRatesObject.getDouble("conversion_result");
+        System.out.println(jsonObject.toString());
+        double result = jsonObject.getDouble("conversion_result");
         
         return result;
     }

@@ -68,8 +68,8 @@ public class HistoryServiceImpl implements HistoryService{
         HistoryModel historyModel = new HistoryModel();
         historyModel.setUser(userServiceImpl.getUser(id));
         historyModel.setTime(LocalDateTime.now());
-        historyModel.setTo_currency_value(monetaryServiceImpl.convertMoney(historyRecordDTO.from_currency_symbol(), historyRecordDTO.from_currency_value(), historyRecordDTO.to_currency_symbol()));
         BeanUtils.copyProperties(historyRecordDTO, historyModel);
+        historyModel.setTo_currency_value(monetaryServiceImpl.convertMoney(historyRecordDTO.from_currency_symbol(), historyRecordDTO.from_currency_value(), historyRecordDTO.to_currency_symbol()));
         historyRepository.save(historyModel);
         return historyModel;
     }
