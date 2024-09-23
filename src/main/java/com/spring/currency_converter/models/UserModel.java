@@ -22,6 +22,7 @@ import jakarta.persistence.Table;
 public class UserModel extends RepresentationModel<UserModel> implements Serializable{
     
     public static final String TABLE = "tb_user";
+    @SuppressWarnings("unused")
     private static final Long serialVersionUID = 1L;
 
     @Id

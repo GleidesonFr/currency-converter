@@ -21,6 +21,7 @@ import jakarta.persistence.Table;
 public class HistoryModel extends RepresentationModel<HistoryModel> implements Serializable{
 
     public static final String TABLE = "tb_history";
+    @SuppressWarnings("unused")
     private static final Long serialVersionUID = 1L;
 
     @Id
