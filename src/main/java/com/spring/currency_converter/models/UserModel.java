@@ -1,12 +1,9 @@
 package com.spring.currency_converter.models;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.hateoas.RepresentationModel;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = UserModel.TABLE)
-public class UserModel extends RepresentationModel<UserModel> implements UserDetails{
+public class UserModel extends RepresentationModel<UserModel>{
     
     public static final String TABLE = "tb_user";
     @SuppressWarnings("unused")
@@ -81,33 +78,5 @@ public class UserModel extends RepresentationModel<UserModel> implements UserDet
 
     public void setHistoryModel(List<HistoryModel> historyModel) {
         this.historyModel = historyModel;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
-    }
-
-    @Override
-    public String getUsername() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
-    }
-
-    public boolean isAccountNonExpired(){
-        return true;
-    }
-
-    public boolean isAccountNonLocked(){
-        return true;
-    }
-
-    public boolean isCredentialsNonExpired(){
-        return true;
-    }
-
-    public boolean isEnabled(){
-        return true;
     }
 }
