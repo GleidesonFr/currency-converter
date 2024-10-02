@@ -13,7 +13,6 @@ public class CustomUserDetails extends UserModel implements UserDetails{
 
     private String username;
     private String password;
-    Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails(Optional<UserModel> user){
         this.username = user.get().getName();
