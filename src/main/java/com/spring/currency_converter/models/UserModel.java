@@ -1,6 +1,5 @@
 package com.spring.currency_converter.models;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,9 +18,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = UserModel.TABLE)
-public class UserModel extends RepresentationModel<UserModel> implements Serializable{
+public class UserModel extends RepresentationModel<UserModel>{
     
     public static final String TABLE = "tb_user";
+    @SuppressWarnings("unused")
     private static final Long serialVersionUID = 1L;
 
     @Id
