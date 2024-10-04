@@ -26,13 +26,13 @@ public class UserController {
     @Autowired
     UserServiceImpl userServiceImpl;
     
-    @PostMapping("/sign-up")
+    @PostMapping("/api/v1/register")
     public ResponseEntity<Object> saveUser(@RequestBody @Valid UserRecordDTO userRecordDTO){
         userServiceImpl.createUser(userRecordDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("User created");
     }
 
-    @GetMapping("/login")
+    @GetMapping("/api/v1/login")
     public ResponseEntity<Object> getUser(@RequestBody @Valid LoginRecordDTO loginRecordDTO){
         UserModel user = userServiceImpl.getUser(loginRecordDTO.username(), loginRecordDTO.password());
         return ResponseEntity.status(HttpStatus.OK).body(user);
