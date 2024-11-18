@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PathVariable; 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,13 +26,13 @@ public class UserController {
     @Autowired
     UserServiceImpl userServiceImpl;
     
-    @PostMapping("/sign-in")
+    @PostMapping("/sign-up")
     public ResponseEntity<Object> saveUser(@RequestBody @Valid UserRecordDTO userRecordDTO){
         userServiceImpl.createUser(userRecordDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("User created");
     }
 
-    @GetMapping("/sign-up")
+    @GetMapping("/sign-in")
     public ResponseEntity<Object> getUser(@RequestBody @Valid LoginRecordDTO loginRecordDTO){
         UserModel user = userServiceImpl.getUser(loginRecordDTO.username(), loginRecordDTO.password());
         return ResponseEntity.status(HttpStatus.OK).body(user);
