@@ -9,38 +9,46 @@
     <title>Currency Converter</title>
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100">
-    <div class="position-relative main-div shadow-lg rounded">
-        <div class="position-absolute top-0 start-0 m-5 row">            
+    <div class=" position-absolute top-0 container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Currency Converter</a>
+            </div>
+          </nav>
+    </div>
+    <div class="main-div shadow-lg rounded p-5">
+        <div class="top-0 start-0 m-5 row">            
             <div class="row spacing-row">   
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Select the currency</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select " id="fromCurrency" onclick="seeSelectionCurrency()" aria-label="Default select example">
+                        <option selected>From currency</option>
                     </select>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-primary w-100">Exchange</button>
+                    <button type="button" class="btn btn-primary w-100" onclick="exchangeSidesOfTheCurrency()">Exchange</button>
                 </div>
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Select the currency</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select " id="toCurrency" onclick="seeSelectionCurrency()" aria-label="Default select example">
+                        <option selected>To currency</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <input type="text" class="form-control" placeholder="Type a value" id="inputCurrency" aria-label="Amount (to the nearest dollar)">
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row column-convert-result">
+            <div class="col">
+                <div class="alert alert-primary " id="activation-alert" role="alert">
+                </div>
+                 <button type="button" class="btn btn-primary w-100" onclick="getData()">Convert</button>           
+            </div>
         </div>
     </div>
+    <script src="../js/select.js"></script>
+    <script type="axios" src="../js/axiosConnection.js"></script>
 </body>
 </html>
