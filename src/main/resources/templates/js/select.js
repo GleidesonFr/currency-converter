@@ -1,4 +1,4 @@
-import { getData } from "./axiosConnection";
+
 
 var currencies = {
     'Dolar Americano': 'USD',
@@ -36,8 +36,4 @@ function exchangeSidesOfTheCurrency(){
     let optionSelected = fromCurrency.selectedIndex;
     fromCurrency.selectedIndex = toCurrency.selectedIndex;
     toCurrency.selectedIndex = optionSelected;
-}
-
-function getDataAxios(){
-    document.getElementById("meuBotao").addEventListener("click", getData);
 }
