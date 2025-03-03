@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" placeholder="Type a value" id="inputCurrency" aria-label="Amount (to the nearest dollar)">
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')" class="form-control" placeholder="Type a value" id="inputCurrency" aria-label="Amount (to the nearest dollar)">
                 </div>
             </div>
         </div>
@@ -50,6 +50,5 @@
     </div>
     <script src="../js/select.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="../js/axiosConnection.js"></script>
 </body>
 </html>
