@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-div{
+    padding: 100px 300px !important;
+    border: 1px solid #dad9d9;
+    margin: 100px;
+}
+
+.spacing-row{
+    margin-bottom: 30px;
+}
+
+#activation-alert{
+    display: none;
+}

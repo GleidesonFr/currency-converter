@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public interface MonetaryService {
     
-    public double convertMoney(String from_currency, double from_value, String to_currency) throws IOException;
+    public double convertMoney(String fromCurrency,String toCurrency, double fromValue) throws IOException;
 
 }

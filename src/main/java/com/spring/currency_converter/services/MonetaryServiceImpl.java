@@ -18,7 +18,7 @@ public class MonetaryServiceImpl implements MonetaryService{
 
     @Override
     @Async
-    public double convertMoney(String from_currency, double from_value, String to_currency) throws IOException {
+    public double convertMoney(String from_currency, String to_currency, double from_value) throws IOException {
 
         Dotenv dotenv = Dotenv.configure().load();
 
